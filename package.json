@@ -1,0 +1,66 @@
+{
+  "name": "footy_cli",
+  "description": "Command Line Interface for football news",
+  "version": "0.0.1",
+  "author": "Edvard Avagyan",
+  "bin": {
+    "footy": "./bin/run"
+  },
+  "bugs": {
+    "url": "https://github.com/Ea0011/footy_cli/issues"
+  },
+  "dependencies": {
+    "@oclif/command": "^1.6.1",
+    "@oclif/config": "^1.15.1",
+    "@oclif/plugin-help": "^3.1.0",
+    "tslib": "^1.13.0",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb": "^5.11.2"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
+    "@oclif/test": "^1.2.6",
+    "@types/node": "^10.17.26",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-config-oclif-typescript": "^0.1.0",
+    "globby": "^10.0.2",
+    "nock": "^12.0.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/Ea0011/footy_cli#readme",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "y",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ea0011/footy_cli.git"
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
