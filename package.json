@@ -13,6 +13,9 @@
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
     "@oclif/plugin-help": "^3.1.0",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.19.2",
+    "cli-ux": "^5.4.6",
     "tslib": "^1.13.0",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2"
