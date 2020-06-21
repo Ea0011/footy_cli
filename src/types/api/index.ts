@@ -1,3 +1,1 @@
-export type Error = {
-  error: string;
-}
+export * from './api'
