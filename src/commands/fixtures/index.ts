@@ -10,15 +10,17 @@ export default class Fixtures extends Command {
 
   static examples = [
     '$footy fixtures',
+    '$footy fixtures --competition=BL1,PL',
   ]
 
   static flags = {
     help: flags.help({char: 'h'}),
-    competition: flags.string({char: 'c', description: 'competition for which to show games'}),
+    competitions: flags.string({char: 'c', description: 'competition for which to show games'}),
   }
 
   async run() {
-    const todayFixturesResult = await fixtures.getFixturesForToday()
+    const {flags} = this.parse(Fixtures)
+    const todayFixturesResult = await fixtures.getFixturesForToday(flags.competitions)
 
     switch (todayFixturesResult.status) {
     case Status.success: {

@@ -3,9 +3,9 @@ import * as fixturesApi from '../../api/fixtures'
 import {Status, ConceptResult} from '../../types/concepts'
 import {ApiError} from '../../types/api'
 
-export const getFixturesForToday = async (): ConceptResult<Fixture[], ApiError> => {
+export const getFixturesForToday = async (competitions?: string): ConceptResult<Fixture[], ApiError> => {
   try {
-    const todaysFixtures = await fixturesApi.getTodaysFixtures()
+    const todaysFixtures = await fixturesApi.getTodaysFixtures(competitions)
 
     const result = todaysFixtures.matches.map((match: Fixture) => ({
       homeTeam: match.homeTeam.name,
