@@ -3,32 +3,28 @@ import * as fixtures from '../../concepts/fixtures'
 import {Fixture} from '../../types/fixtures'
 import {cli} from 'cli-ux'
 import {Status, SuccessResult, FailureResult} from '../../types/concepts'
-import {parseISO, startOfToday} from 'date-fns'
-import {StandardError} from '../../types/errors'
+import {ApiError} from '../../types/api'
+import {startOfToday} from 'date-fns'
 
-export default class Fixtures extends Command {
-  static description = 'display fixtures that correspond to given filters'
+export default class TodayFixtures extends Command {
+  static description = 'display fixtures for today'
 
   static examples = [
-    '$footy fixtures',
-    '$footy fixtures --competition=BL1,PL',
+    '$footy fixtures:today',
+    '$footy fixtures:today --competition=BL1,PL',
   ]
 
   static flags = {
     help: flags.help({char: 'h'}),
     competitions: flags.string({char: 'c', description: 'competition for which to show games'}),
-    dateFrom: flags.string({description: 'start date'}),
-    dateTo: flags.string({description: 'end date'}),
   }
 
   async run() {
-    const {flags} = this.parse(Fixtures)
-    const dateFrom = flags.dateFrom ? parseISO(flags.dateFrom) : startOfToday()
-    const dateTo = flags.dateTo ? parseISO(flags.dateTo) : startOfToday()
+    const {flags} = this.parse(TodayFixtures)
     const todayFixturesResult = await fixtures.getFixtures({
       competitions: flags.competitions,
-      dateFrom,
-      dateTo,
+      dateFrom: startOfToday(),
+      dateTo: startOfToday(),
     })
 
     switch (todayFixturesResult.status) {
@@ -44,9 +40,9 @@ export default class Fixtures extends Command {
       break
     }
     case Status.failure: {
-      const errorResult = (todayFixturesResult as FailureResult<StandardError>).error
+      const errorResult = (todayFixturesResult as FailureResult<ApiError>).error
 
-      this.warn(`${errorResult.error} ${errorResult.message}`)
+      this.error(errorResult.error)
     }
     }
   }

@@ -1,9 +1,19 @@
 import axiosInstance from '../../config/axios'
 
-export const getTodaysFixtures = async (competitions?: string) => {
-  const fixtures = await axiosInstance.get('matches', {
-    params: {competitions},
-  })
+export const getFixtures = async (
+  params: {
+    dateFrom?: string;
+    dateTo?: string;
+    competitions?: string;
+  }
+) => {
+  try {
+    const fixtures = await axiosInstance.get('matches', {
+      params,
+    })
 
-  return fixtures.data
+    return fixtures.data
+  } catch (error) {
+    throw new Error(error.message)
+  }
 }

@@ -1,11 +1,27 @@
 import {Fixture} from '../../types/fixtures'
 import * as fixturesApi from '../../api/fixtures'
 import {Status, ConceptResult} from '../../types/concepts'
-import {ApiError} from '../../types/api'
+import {GetFixtureParams} from '../../types/concepts/fixtures'
+import {format} from 'date-fns'
+import {validateFixtureParams} from '../../validators/fixtures'
+import {StandardError} from '../../types/errors'
 
-export const getFixturesForToday = async (competitions?: string): ConceptResult<Fixture[], ApiError> => {
+export const getFixtures = async (params: GetFixtureParams): ConceptResult<Fixture[], StandardError> => {
   try {
-    const todaysFixtures = await fixturesApi.getTodaysFixtures(competitions)
+    validateFixtureParams(params)
+  } catch (error) {
+    return {
+      status: Status.failure,
+      error,
+    }
+  }
+
+  try {
+    const todaysFixtures = await fixturesApi.getFixtures({
+      ...params,
+      dateFrom: format(params.dateFrom, 'yyyy-mm-dd'),
+      dateTo: format(params.dateTo, 'yyyy-mm-dd'),
+    })
 
     const result = todaysFixtures.matches.map((match: Fixture) => ({
       homeTeam: match.homeTeam.name,
