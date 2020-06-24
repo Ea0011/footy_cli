@@ -1,4 +1,5 @@
 import axiosInstance from '../../config/axios'
+import {ApiError} from '../../errors/api'
 
 export const getFixtures = async (
   params: {
@@ -14,6 +15,6 @@ export const getFixtures = async (
 
     return fixtures.data
   } catch (error) {
-    throw new Error(error.message)
+    throw new ApiError({key: 'CHANGE', error: 'SOMEERR', message: 'CHANGE'})
   }
 }
