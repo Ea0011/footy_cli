@@ -3,8 +3,9 @@ import * as fixtures from '../../concepts/fixtures'
 import {Fixture} from '../../types/fixtures'
 import {cli} from 'cli-ux'
 import {Status, SuccessResult, FailureResult} from '../../types/concepts'
-import {ApiError} from '../../types/api'
 import {addDays, startOfToday} from 'date-fns'
+import {formatError} from '../../helpers/errors'
+import {StandardError} from '../../types/errors'
 
 export default class TomorrowFixtures extends Command {
   static description = 'display fixtures for tomorrow'
@@ -42,9 +43,9 @@ export default class TomorrowFixtures extends Command {
       break
     }
     case Status.failure: {
-      const errorResult = (todayFixturesResult as FailureResult<ApiError>).error
+      const errorResult = (todayFixturesResult as FailureResult<StandardError>).error
 
-      this.error(errorResult.error)
+      this.error(formatError(errorResult))
     }
     }
   }

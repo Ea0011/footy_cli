@@ -5,6 +5,7 @@ import {cli} from 'cli-ux'
 import {Status, SuccessResult, FailureResult} from '../../types/concepts'
 import {parseISO, startOfToday} from 'date-fns'
 import {StandardError} from '../../types/errors'
+import {formatError} from '../../helpers/errors'
 
 export default class Fixtures extends Command {
   static description = 'display fixtures that correspond to given filters'
@@ -46,7 +47,7 @@ export default class Fixtures extends Command {
     case Status.failure: {
       const errorResult = (todayFixturesResult as FailureResult<StandardError>).error
 
-      this.warn(`${errorResult.error} ${errorResult.message}`)
+      this.error(formatError(errorResult))
     }
     }
   }

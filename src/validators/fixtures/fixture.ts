@@ -14,6 +14,6 @@ export const validateFixtureParams = (params: GetFixtureParams) => {
   }
 
   if (isBefore(dateTo, dateFrom)) {
-    throw new ValidationError('dateTo', 'params error', 'dateTo cannot be earlier than dateTo')
+    throw new ValidationError('dateTo', 'params error', 'dateTo cannot be earlier than dateFrom')
   }
 }
