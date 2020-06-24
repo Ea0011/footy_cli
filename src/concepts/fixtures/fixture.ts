@@ -19,8 +19,8 @@ export const getFixtures = async (params: GetFixtureParams): ConceptResult<Fixtu
   try {
     const todaysFixtures = await fixturesApi.getFixtures({
       ...params,
-      dateFrom: format(params.dateFrom, 'yyyy-mm-dd'),
-      dateTo: format(params.dateTo, 'yyyy-mm-dd'),
+      dateFrom: format(params.dateFrom, 'yyyy-MM-dd'),
+      dateTo: format(params.dateTo, 'yyyy-MM-dd'),
     })
 
     const result = todaysFixtures.matches.map((match: Fixture) => ({
