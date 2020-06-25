@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "cli-ux": "^5.4.6",
     "date-fns": "^2.14.0",
+    "nconf": "^0.10.0",
     "tslib": "^1.13.0",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.6",
+    "@types/nconf": "^0.10.0",
     "@types/node": "^10.17.26",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
