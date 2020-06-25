@@ -28,6 +28,7 @@ export const getFixtures = async (params: GetFixtureParams): ConceptResult<Fixtu
       awayTeam: match.awayTeam.name,
       date: new Date(match.utcDate),
       competition: match.competition.name,
+      score: match.score,
     }))
 
     return {

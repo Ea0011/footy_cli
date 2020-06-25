@@ -1,5 +1,6 @@
 import {Team} from '../teams'
 import {Competition} from '../competitions'
+import {Score} from '../scores'
 
 export type Fixture = {
   id: number;
@@ -9,4 +10,5 @@ export type Fixture = {
   homeTeam: Team;
   awayTeam: Team;
   competition: Competition;
+  score: Score;
 }

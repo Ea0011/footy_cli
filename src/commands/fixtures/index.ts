@@ -41,6 +41,8 @@ export default class Fixtures extends Command {
         awayTeam: {},
         competition: {},
         date: {},
+        home: {get: row => row.score.fullTime.homeTeam},
+        away: {get: row => row.score.fullTime.awayTeam},
       })
       break
     }
