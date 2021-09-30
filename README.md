@@ -16,28 +16,130 @@ Command Line Interface for football news
 <!-- usage -->
 ```sh-session
 $ npm install -g footy_cli
-$ footy COMMAND
+$ y COMMAND
 running command...
-$ footy (-v|--version|version)
-footy/0.0.1 darwin-x64 node-v12.11.1
-$ footy --help [COMMAND]
+$ y (-v|--version|version)
+footy_cli/0.0.1 darwin-x64 node-v10.15.0
+$ y --help [COMMAND]
 USAGE
-  $ footy COMMAND
+  $ y COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`footy help [COMMAND]`](#footy-help-command)
-* [`footy fixtures [COMPETITIONS, DATEFROM, DATETO]`](#footy-help-command)
+* [`y competitions`](#y-competitions)
+* [`y fixtures`](#y-fixtures)
+* [`y fixtures:today`](#y-fixturestoday)
+* [`y fixtures:tomorrow`](#y-fixturestomorrow)
+* [`y hello [FILE]`](#y-hello-file)
+* [`y help [COMMAND]`](#y-help-command)
 
-## `footy help [COMMAND]`
+## `y competitions`
 
-display help for footy
+display fixtures that correspond to given filters
 
 ```
 USAGE
-  $ footy help [COMMAND]
+  $ y competitions
+
+OPTIONS
+  -c, --competition=competition  competition for which to show standings
+  -h, --help                     show CLI help
+
+EXAMPLES
+  $footy fixtures
+  $footy fixtures --competition=BL1,PL
+```
+
+_See code: [src/commands/competitions/index.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/competitions/index.ts)_
+
+## `y fixtures`
+
+display fixtures that correspond to given filters
+
+```
+USAGE
+  $ y fixtures
+
+OPTIONS
+  -c, --competitions=competitions  competition for which to show games
+  -h, --help                       show CLI help
+  --dateFrom=dateFrom              start date
+  --dateTo=dateTo                  end date
+
+EXAMPLES
+  $footy fixtures
+  $footy fixtures --competition=BL1,PL
+```
+
+_See code: [src/commands/fixtures/index.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/fixtures/index.ts)_
+
+## `y fixtures:today`
+
+display fixtures for today
+
+```
+USAGE
+  $ y fixtures:today
+
+OPTIONS
+  -c, --competitions=competitions  competition for which to show games
+  -h, --help                       show CLI help
+
+EXAMPLES
+  $footy fixtures:today
+  $footy fixtures:today --competition=BL1,PL
+```
+
+_See code: [src/commands/fixtures/today.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/fixtures/today.ts)_
+
+## `y fixtures:tomorrow`
+
+display fixtures for tomorrow
+
+```
+USAGE
+  $ y fixtures:tomorrow
+
+OPTIONS
+  -c, --competitions=competitions  competition for which to show games
+  -h, --help                       show CLI help
+
+EXAMPLES
+  $footy fixtures:tomorrow
+  $footy fixtures:tomorrow --competition=BL1,PL
+```
+
+_See code: [src/commands/fixtures/tomorrow.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/fixtures/tomorrow.ts)_
+
+## `y hello [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ y hello [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+
+EXAMPLE
+  $ y hello
+  hello world from ./src/hello.ts!
+```
+
+_See code: [src/commands/hello.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/hello.ts)_
+
+## `y help [COMMAND]`
+
+display help for y
+
+```
+USAGE
+  $ y help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -47,28 +149,4 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.1.0/src/commands/help.ts)_
-
-## `footy fixtures [COMPETITIONS, DATEFROM, DATETO]`
-
-Display football fixtures for competitions withing given time range. Special commands exist for today and tomorrow filtering.
-
-```
-USAGE
-  $ footy fixtures
-  $ footy fixtures:today
-  $ footy fixtures:tomorrow
-
-OPTIONS
-  -c, --competitions competitions to show fixtures for
-  -h, --help       show CLI help
-  --dateFrom=yyyy-MM-dd  start date
-  --dateTo=yyyy-MM-d  end date
-
-EXAMPLE
-  $ footy fixtures --competitions=PL, BL1 --dateFrom=1990-01-01 --dateTo=1990-01-05
-  Hometeam                  Awayteam                   Competition      Date                     
-  Fulham FC                 Brentford FC               Championship     2020-06-20T11:30:00.000Z 
-```
-
-_See code: [src/commands/hello.ts](https://github.com/Ea0011/footy_cli/blob/v0.0.1/src/commands/hello.ts)_
 <!-- commandsstop -->

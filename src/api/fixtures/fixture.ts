@@ -15,6 +15,7 @@ export const getFixtures = async (
 
     return fixtures.data
   } catch (error) {
-    throw new ApiError({key: 'CHANGE', error: 'SOMEERR', message: 'CHANGE'})
+    console.error(error);
+    throw new ApiError({key: 'CHANGE', error: 'SomeErr', message: 'CHANGE'})
   }
 }

@@ -1,4 +1,4 @@
-import {StandardError} from '../../types/errors';
+import {StandardError} from '../../types/errors'
 
 export const formatError = (standardError: StandardError) => {
   const {key, error, message} = standardError

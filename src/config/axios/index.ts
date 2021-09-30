@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as nconf from 'nconf'
 
-nconf.use('file', {file: 'src/config/football_data/football-api.config.json'})
+nconf.use('file', {file: `${__dirname}/../football_data/football-api.config.json`})
 nconf.load()
 const apiKey = nconf.get('apiKey')
 

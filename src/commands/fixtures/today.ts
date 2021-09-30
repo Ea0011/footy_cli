@@ -1,11 +1,9 @@
 import {Command, flags} from '@oclif/command'
 import * as fixtures from '../../concepts/fixtures'
-import {Fixture} from '../../types/fixtures'
 import {cli} from 'cli-ux'
-import {Status, SuccessResult, FailureResult} from '../../types/concepts'
+import {Status} from '../../types/concepts'
 import {startOfToday} from 'date-fns'
 import {formatError} from '../../helpers/errors'
-import {StandardError} from '../../types/errors'
 
 export default class TodayFixtures extends Command {
   static description = 'display fixtures for today'
@@ -30,7 +28,7 @@ export default class TodayFixtures extends Command {
 
     switch (todayFixturesResult.status) {
     case Status.success: {
-      const fixtures = (todayFixturesResult as SuccessResult<Fixture[]>).result
+      const fixtures = todayFixturesResult.result
 
       cli.table(fixtures, {
         homeTeam: {},
@@ -43,7 +41,7 @@ export default class TodayFixtures extends Command {
       break
     }
     case Status.failure: {
-      const errorResult = (todayFixturesResult as FailureResult<StandardError>).error
+      const errorResult = todayFixturesResult.error
 
       this.error(formatError(errorResult))
     }

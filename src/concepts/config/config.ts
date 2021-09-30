@@ -4,7 +4,7 @@ import {StandardError} from '../../errors/standard-error'
 
 export const setApiKey = (apiKey: string): ConceptResult<string, StandardError> =>
   new Promise((res, rej) => {
-    nconf.use('file', {file: 'src/config/football_data/football-api.config.json'})
+    nconf.use('file', {file: `${__dirname}/../../config/football_data/football-api.config.json`})
     nconf.load()
     nconf.set('apiKey', apiKey)
 
